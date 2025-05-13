@@ -1,16 +1,36 @@
-float numero1 = 0.0;
-float numero2 = 0.0;
-float soma = 0.0;
-float Subtrair = 0.0;
-float Multiplicar = 0.0;
-float Dividir = 0.0;
+float resultado;
 int escolhaDaOperacao;
 int contador;
+
+
+float somar(float numero1, float numero2){
+  return(numero1 + numero2);
+}
+
+float Subtrair(float numero1, float numero2){
+  return (numero1 - numero2);
+}
+
+float multiplicar(float numero1, float numero2){
+  return(numero1 * numero2);
+} 
+
+
+float Dividir(float numero1, float numero2){
+  return(numero1 / numero2);
+}
+
+
+
+
 
 void setup()
 {
   Serial.begin(9600);
 
+  float numero1 = 0.0; // variavel local
+  float numero2 = 0.0;
+  
   do{
     Serial.println("Oba,Bem-vindo (a) a calculadora mega inteligente : Valeu por usar.");
     Serial.println("Mano Escolha uma das opcoes/operacoes:");
@@ -31,42 +51,37 @@ void setup()
     while(!Serial.available());{} //Espera o usuário digitar
     numero2 = Serial.parseFloat();
 
-    if (escolhaDaOperacao == 1){
-      soma = numero1 + numero2;
-      Serial.println("WOW! O resultado foi:" + String(soma));
-    }
 
     switch(escolhaDaOperacao){
       case 1:
-       soma = numero1 + numero2;
-       Serial.println("WOW! O resultado foi:" + String(soma));
-      
-        break;
+       
+      	resultado = somar(numero1, numero2);
+      	Serial.println("WOW! O resultado foi:" + String(resultado));
+      	break;
 
       case 2:
-      	Subtrair = numero1 - numero2;
-      	Serial.println("WOW! O resultado foi:" + String(Subtrair));
-      	
+      	resultado = Subtrair(numero1, numero2);
+      	Serial.println("WOW! O resultado foi:" + String(resultado));
       	break;
 
       case 3:
-        Multiplicar = numero1 * numero2;
-        Serial.println("WOW! O resultado foi:" + String(Multiplicar));
+      	resultado = multiplicar(numero1, numero2);
+      	Serial.println("WOW! O resultado foi:" + String(resultado));
 
-        break;
+      	break;
 
-      case 4:
-        Dividir = numero1 / numero2;
-        Serial.println("WOW! O resultado foi:" + String(Dividir));}
-    
-        break;
+      case 4: 
+      	resultado = Dividir(numero1, numero2);
+      	Serial.println("WOW! O resultado foi:" + String(resultado));
+
+      	break;
 
       default:
-      Serial.println("Opcao invalida");
+      	Serial.println("Opcao invalida");
     } 
 
     Serial.println("Mano voce deseja continuar? Se sim, digite [s], se nao digite [n]");
-    while(!Serial.available()){} //Esperar o usuario digitar
+    while(!Serial.available());{} //Esperar o usuario digitar
 
     if (Serial.readString() == "s"){
       contador++;
